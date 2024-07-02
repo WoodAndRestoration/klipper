@@ -1,12 +1,13 @@
 [include mainsail.cfg]
 [include toolhead_btt_ebb36.cfg]
 [include macros.cfg]
-[include awd_octopus.cfg]
+#[include awd.cfg]
+[include awd_autotune.cfg]
+[include configure_stepper.cfg]
 [include beacon.cfg]
 #[include max.cfg]
 [include K-ShakeTune/*.cfg]
-[include sensorless_2209.cfg]
-#[include test_speed.cfg]
+[include test_speed.cfg]
 [mcu]
 ##  Obtain definition by "ls -l /dev/serial/by-id/" then unplug to verify
 ##--------------------------------------------------------------------
@@ -16,8 +17,8 @@ restart_method: command
 
 [printer]
 kinematics: corexy
-max_velocity: 500  
-max_accel: 10000           #Max 4000
+max_velocity: 5000
+max_accel: 5000           #Max 4000
 max_z_velocity: 15          #Max 15 for 12V TMC Drivers, can increase for 24V
 max_z_accel: 350
 square_corner_velocity: 5.0
@@ -270,16 +271,16 @@ gcode:
 #*#
 #*# [extruder]
 #*# control = pid
-#*# pid_kp = 36.490
-#*# pid_ki = 3.742
-#*# pid_kd = 88.944
+#*# pid_kp = 34.235
+#*# pid_ki = 3.215
+#*# pid_kd = 91.152
 #*#
 #*# [bed_mesh default]
 #*# version = 1
 #*# points =
-#*# 	0.019489, 0.026078, -0.000286
-#*# 	0.019642, 0.019954, 0.023920
-#*# 	0.045736, 0.020652, -0.027494
+#*# 	-0.034716, -0.034291, -0.029525
+#*# 	-0.037920, -0.013050, -0.010704
+#*# 	-0.002777, -0.013495, -0.014230
 #*# x_count = 3
 #*# y_count = 3
 #*# mesh_x_pps = 2
@@ -289,7 +290,7 @@ gcode:
 #*# min_x = 50.0
 #*# max_x = 300.0
 #*# min_y = 50.0
-#*# max_y = 300.0
+#*# max_y = 275.0
 #*#
 #*# [heater_bed]
 #*# control = pid
@@ -301,17 +302,17 @@ gcode:
 #*# z_offset = -0.450
 #*#
 #*# [beacon model default]
-#*# model_coef = 1.6099529281029155,
-#*# 	1.918618340069859,
-#*# 	0.7370592205103601,
-#*# 	0.3317565058175378,
-#*# 	0.20457848565602993,
-#*# 	0.1712759326435706,
-#*# 	-0.06626846304973039,
-#*# 	-0.09357322813217009,
-#*# 	0.11550649113403658,
-#*# 	0.07562261828949605
-#*# model_domain = 1.902208812604016e-07,1.943607178656662e-07
+#*# model_coef = 1.6582511759315266,
+#*# 	  1.9563821639620198,
+#*# 	  0.7168000386361832,
+#*# 	  0.2371584377366646,
+#*# 	  0.1756716084272504,
+#*# 	  0.4829910812327402,
+#*# 	  -0.04755251397088826,
+#*# 	  -0.5443626247822951,
+#*# 	  0.0971993403499928,
+#*# 	  0.2718693698560729
+#*# model_domain = 1.9084199156113135e-07,1.9442418051732321e-07
 #*# model_range = 0.200000,5.000000
-#*# model_temp = 42.187583
-#*# model_offset = 0.06000
+#*# model_temp = 39.830018
+#*# model_offset = 0.00000
